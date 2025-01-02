@@ -1,0 +1,17 @@
+pub(crate) const VERSION: &str = "X-Up-Version";
+pub(crate) const FAIL_CONTEXT: &str = "X-Up-Fail-Context";
+pub(crate) const CONTEXT: &str = "X-Up-Context";
+pub(crate) const FAIL_MODE: &str = "X-Up-Fail-Mode";
+pub(crate) const MODE: &str = "X-Up-Mode";
+pub(crate) const FAIL_TARGET: &str = "X-Up-Fail-Target";
+pub(crate) const TARGET: &str = "X-Up-Target";
+pub(crate) const VALIDATE: &str = "X-Up-Validate";
+pub(crate) const METHOD: &str = "X-Up-Method";
+pub(crate) const EVICT_CACHE: &str = "X-Up-Evict-Cache";
+pub(crate) const EXPIRE_CACHE: &str = "X-Up-Expire-Cache";
+pub(crate) const EVENTS: &str = "X-Up-Events";
+pub(crate) const ACCEPT_LAYER: &str = "X-Up-Accept-Layer";
+pub(crate) const DISMISS_LAYER: &str = "X-Up-Dismiss-Layer";
+pub(crate) const LOCATION: &str = "X-Up-Location";
+pub(crate) const TITLE: &str = "X-Up-Title";
+pub(crate) const VARY: &str = "Vary";

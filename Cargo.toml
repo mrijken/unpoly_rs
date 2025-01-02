@@ -1,0 +1,29 @@
+[package]
+name = "unpoly"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/mrijken/unpoly-rs"
+keywords = ["unpoly", "axum"]
+authors = ["Marc Rijken <marc@rijken.org>"]
+readme = "README.md"
+description = "Helper for the Unpoly API, initially for usage in Axum handlers"
+exclude = [".github/*"]
+
+[features]
+default = ["axum"]
+axum=["dep:axum"]
+
+[dependencies]
+axum = { version= "*", optional=true}
+serde_json="*"
+serde = { version = "1.0.217", features = ["derive"] }
+derive_more = {version="*", features = ["full"]}
+http = "1.2.0"
+
+[dev-dependencies]
+tokio = { version = "1.32.0", features = ["full"] }
+
+[profile.release]
+panic = "abort"
+lto = "fat"
+codegen-units = 1
