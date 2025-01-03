@@ -77,7 +77,7 @@ pub enum MatchingLayer {
 ///
 /// Typical usages:
 ///
-/// ## Ommitting content that isn't targeted
+/// ## Omitting content that isn't targeted
 /// <https://unpoly.com/optimizing-responses#omitting-content-that-isnt-targeted>
 ///
 /// ```
@@ -240,7 +240,7 @@ impl Unpoly {
 
     /// Returns the current mode
     ///
-    /// This will return the X-Up-Mode unless succes is false, in which case it will return the X-Up-Fail-Mode
+    /// This will return the X-Up-Mode unless success is false, in which case it will return the X-Up-Fail-Mode
     pub fn mode(&mut self) -> &LayerMode {
         if let Some(false) = self.success {
             self.response_vary.insert("X-Up-Fail-Mode".to_string());
