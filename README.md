@@ -13,7 +13,7 @@ So with Unpoly you hardly have to write any Javascript for the frontend; your si
 server-side delivered/generated html and css. No need to write code in both the frontend and backend
 for getting the data, validating forms, etc.
 
-## How doe Unpoly-rs helps?
+## How does Unpoly-rs helps?
 
 Unpoly works with regular html files. If the backend serve html files, static or dynamic, you're good
 to go. However, when the backends implements the [Unpoly Server Protocol](https://unpoly.com/up.protocol), the
@@ -21,7 +21,7 @@ responses can be exactly suited to match the requests.
 
 ## Typical usages
 
-```
+```rust
 use axum::response::IntoResponse;
 use axum::extract;
 use serde::Deserialize;
