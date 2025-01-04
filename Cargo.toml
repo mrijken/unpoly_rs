@@ -2,10 +2,10 @@
 name = "unpoly"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 repository = "https://github.com/mrijken/unpoly-rs"
 keywords = ["unpoly", "axum"]
 authors = ["Marc Rijken <marc@rijken.org>"]
-readme = "README.md"
 description = "Helper for the Unpoly API, initially for usage in Axum handlers"
 exclude = [".github/*"]
 
@@ -14,7 +14,7 @@ default = ["axum"]
 axum=["dep:axum"]
 
 [dependencies]
-axum = { version= "*", optional=true}
+axum = { version= "0.7.9", optional=true}
 serde_json="*"
 serde = { version = "1.0.217", features = ["derive"] }
 derive_more = {version="*", features = ["full"]}
