@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2025-01-04
+
+### 🚜 Refactor
+
+- No publish via github actions
+
+### 📚 Documentation
+
+- Fix code highlighting
+
 ## [0.1.1] - 2025-01-04
 
 ### 🚜 Refactor
