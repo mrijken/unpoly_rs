@@ -3,12 +3,10 @@ use crate::LayerMode;
 use crate::Unpoly;
 
 use axum::{
-    async_trait,
     extract::FromRequestParts,
     http::{request::Parts, StatusCode},
 };
 
-#[async_trait]
 impl<S> FromRequestParts<S> for Unpoly
 where
     S: Send + Sync,

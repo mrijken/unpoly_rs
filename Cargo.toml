@@ -15,8 +15,8 @@ default = ["axum"]
 axum=["dep:axum"]
 
 [dependencies]
-axum = { version= "0.7.9", optional=true}
-serde_json="1.0.134"
+axum = { version= "0.8.1", optional=true}
+serde_json="1.0.135"
 serde = { version = "1.0.217", features = ["derive"] }
 derive_more = {version="1.0.0", features = ["full"]}
 http = "1.2.0"
