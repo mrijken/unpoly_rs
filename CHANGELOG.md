@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 - Fix code highlighting
 
+### ⚙️ Miscellaneous Tasks
+
+- Release unpoly version 0.1.2
+
 ## [0.1.1] - 2025-01-04
 
 ### 🚜 Refactor
