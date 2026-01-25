@@ -1,10 +1,10 @@
-use crate::headers;
 use crate::LayerMode;
 use crate::Unpoly;
+use crate::headers;
 
 use axum::{
     extract::FromRequestParts,
-    http::{request::Parts, StatusCode},
+    http::{StatusCode, request::Parts},
 };
 
 impl<S> FromRequestParts<S> for Unpoly
