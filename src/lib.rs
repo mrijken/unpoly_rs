@@ -323,7 +323,7 @@ impl Unpoly {
         self.response_target = Some(target.into());
     }
 
-    /// Get the fields (or :unkown) which triggered the validation
+    /// Get the fields (or :unknown) which triggered the validation
     ///  - empty: commit the action
     ///  - list of fields: the fields which triggered the validation, perform only a validation
     ///    When only `:unknown` isn given, we do not know which field triggered the validation,
