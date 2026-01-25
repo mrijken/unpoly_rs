@@ -87,7 +87,7 @@ pub enum MatchingLayer {
 /// /// https://unpoly.com/optimizing-responses#omitting-content-that-isnt-targeted
 /// fn handler_target(mut unpoly: unpoly::Unpoly) -> impl IntoResponse {
 ///     let target = unpoly.target();
-///     let html = todo!("render content for target only");
+///     let html: String = todo!("render content for target only");
 ///     (unpoly.get_headers().unwrap(), html)
 /// }
 ///
@@ -96,7 +96,7 @@ pub enum MatchingLayer {
 /// fn handler_mode_target(mut unpoly: unpoly::Unpoly) -> impl IntoResponse {
 ///     let mode = unpoly.mode();
 ///     let target = unpoly.target();
-///     let html = todo!("render content for target in mode only");
+///     let html: String = todo!("render content for target in mode only");
 ///     (unpoly.get_headers().unwrap(), html)
 /// }
 ///
@@ -115,14 +115,14 @@ pub enum MatchingLayer {
 /// /// https://unpoly.com/optimizing-responses#rendering-content-that-depends-on-layer-context
 /// fn handler_context(mut unpoly: unpoly::Unpoly) -> impl IntoResponse {
 ///     let context = unpoly.context();
-///     let html = todo!("render html for context");
+///     let html: String = todo!("render html for context");
 ///     (unpoly.get_headers().unwrap(), html)
 /// }
 ///
 /// /// Set the title of the page via a fragment update
 /// fn handler_title(mut unpoly: unpoly::Unpoly) -> impl IntoResponse {
 ///     unpoly.set_title("My App");
-///     let html = todo!();
+///     let html: String = todo!();
 ///     (unpoly.get_headers().unwrap(), html)
 /// }
 ///
@@ -131,14 +131,14 @@ pub enum MatchingLayer {
 ///     unpoly.emit_event("user:created", json!({"id": 152}));
 ///     // or for a specific layer
 ///     unpoly.emit_event_layer("user:created", json!({"id": 152}), unpoly::MatchingLayer::CURRENT);
-///     let html = todo!();
+///     let html: String = todo!();
 ///     (unpoly.get_headers().unwrap(), html)
 /// }
 ///
 /// /// Expire cache
 /// fn handler_cache(mut unpoly: unpoly::Unpoly) -> impl IntoResponse {
 ///     unpoly.set_expire_cache("/path/to/expire/*");
-///     let html = todo!();
+///     let html: String = todo!();
 ///     (unpoly.get_headers().unwrap(), html)
 /// }
 ///
@@ -153,11 +153,11 @@ pub enum MatchingLayer {
 /// fn handler_validate(mut unpoly: unpoly::Unpoly, extract::Form(form): extract::Form<SampleForm>) -> impl IntoResponse {
 ///     if !unpoly.validate().is_empty() {
 ///         todo!("Validate form");
-///         let html = todo!("render form with optional errors");
+///         let html: String = todo!("render form with optional errors");
 ///         (unpoly.get_headers().unwrap(), html)
 ///     } else {
 ///         todo!("Process form");
-///         let html = todo!("render form with optional errors");
+///         let html: String = todo!("render form with optional errors");
 ///         (unpoly.get_headers().unwrap(), html)
 ///     }
 /// }
