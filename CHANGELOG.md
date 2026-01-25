@@ -3,7 +3,6 @@
 ### ⚙️ Miscellaneous Tasks
 
 - Release unpoly version 0.2.0
-
 ## [0.1.2] - 2025-01-04
 
 ### 🚜 Refactor
