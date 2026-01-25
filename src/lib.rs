@@ -323,6 +323,18 @@ impl Unpoly {
         self.response_target = Some(target.into());
     }
 
+    /// Get the fields (or :unkown) which triggered the validation
+    ///  - empty: commit the action
+    ///  - list of fields: the fields which triggered the validation, perform only a validation
+    ///    When only `:unknown` isn given, we do not know which field triggered the validation,
+    ///    but still no commit is expected
+    ///
+    /// Possible responses:
+    /// - 200 with rendered form: validation succeeded
+    /// - 422 with rendered form: validation or commit failed
+    /// - 200 with other content: commit succeeded
+    /// - 302: commit succeeded, with redirect to another page
+    ///
     pub fn validate(&mut self) -> &Vec<String> {
         if !self.request_validate.is_empty() && self.is_up() {
             self.response_vary.insert("X-Up-Validate".to_string());
