@@ -451,4 +451,71 @@ impl Unpoly {
         }
         Ok(headers)
     }
+
+    fn from_headers(header_map: &HeaderMap) -> Self {
+        let request_version = header_map
+            .get(headers::VERSION)
+            .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
+            .unwrap_or(None);
+
+        let request_context: Option<serde_json::Value> = header_map
+            .get(headers::CONTEXT)
+            .map(|v| v.to_str().ok())
+            .unwrap_or(None)
+            .map(|v| serde_json::from_str(v).unwrap_or_default());
+
+        let request_fail_context: Option<serde_json::Value> = header_map
+            .get(headers::FAIL_CONTEXT)
+            .map(|v| v.to_str().ok())
+            .unwrap_or(None)
+            .map(|v| serde_json::from_str(v).unwrap_or_default());
+
+        let request_mode = header_map
+            .get(headers::MODE)
+            .map(|v| {
+                v.to_str().map_or(LayerMode::ROOT, |v| {
+                    serde_json::from_str(&("\"".to_string() + v + "\"")).unwrap_or_default()
+                })
+            })
+            .unwrap_or(LayerMode::ROOT);
+
+        let request_fail_mode = header_map
+            .get(headers::FAIL_MODE)
+            .map(|v| {
+                v.to_str().map_or(LayerMode::ROOT, |v| {
+                    serde_json::from_str(&("\"".to_string() + v + "\"")).unwrap_or_default()
+                })
+            })
+            .unwrap_or(LayerMode::ROOT);
+
+        let request_target = header_map
+            .get(headers::TARGET)
+            .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
+            .unwrap_or(None);
+
+        let request_fail_target = header_map
+            .get(headers::FAIL_TARGET)
+            .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
+            .unwrap_or(None);
+
+        let request_validate = header_map.get(headers::VALIDATE).map_or(vec![], |v| {
+            v.to_str()
+                .unwrap_or("")
+                .split_whitespace()
+                .map(|v| v.trim().to_string())
+                .collect()
+        });
+
+        Unpoly {
+            request_version,
+            request_context,
+            request_fail_context,
+            request_fail_mode,
+            request_mode,
+            request_target,
+            request_fail_target,
+            request_validate,
+            ..Default::default()
+        }
+    }
 }

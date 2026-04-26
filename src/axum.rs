@@ -1,6 +1,4 @@
-use crate::LayerMode;
 use crate::Unpoly;
-use crate::headers;
 
 use axum::{
     extract::FromRequestParts,
@@ -14,77 +12,7 @@ where
     type Rejection = (StatusCode, &'static str);
 
     async fn from_request_parts(parts: &mut Parts, _state: &S) -> Result<Self, Self::Rejection> {
-        let request_version = parts
-            .headers
-            .get(headers::VERSION)
-            .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
-            .unwrap_or(None);
-
-        let request_context: Option<serde_json::Value> = parts
-            .headers
-            .get(headers::CONTEXT)
-            .map(|v| v.to_str().ok())
-            .unwrap_or(None)
-            .map(|v| serde_json::from_str(v).unwrap_or_default());
-
-        let request_fail_context: Option<serde_json::Value> = parts
-            .headers
-            .get(headers::FAIL_CONTEXT)
-            .map(|v| v.to_str().ok())
-            .unwrap_or(None)
-            .map(|v| serde_json::from_str(v).unwrap_or_default());
-
-        let request_mode = parts
-            .headers
-            .get(headers::MODE)
-            .map(|v| {
-                v.to_str().map_or(LayerMode::ROOT, |v| {
-                    serde_json::from_str(&("\"".to_string() + v + "\"")).unwrap_or_default()
-                })
-            })
-            .unwrap_or(LayerMode::ROOT);
-
-        let request_fail_mode = parts
-            .headers
-            .get(headers::FAIL_MODE)
-            .map(|v| {
-                v.to_str().map_or(LayerMode::ROOT, |v| {
-                    serde_json::from_str(&("\"".to_string() + v + "\"")).unwrap_or_default()
-                })
-            })
-            .unwrap_or(LayerMode::ROOT);
-
-        let request_target = parts
-            .headers
-            .get(headers::TARGET)
-            .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
-            .unwrap_or(None);
-
-        let request_fail_target = parts
-            .headers
-            .get(headers::FAIL_TARGET)
-            .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
-            .unwrap_or(None);
-
-        let request_validate = parts.headers.get(headers::VALIDATE).map_or(vec![], |v| {
-            v.to_str()
-                .unwrap_or("")
-                .split_whitespace()
-                .map(|v| v.trim().to_string())
-                .collect()
-        });
-
-        Ok(Unpoly {
-            request_version,
-            request_context,
-            request_fail_context,
-            request_fail_mode,
-            request_mode,
-            request_target,
-            request_fail_target,
-            request_validate,
-            ..Default::default()
-        })
+        Ok(Unpoly::from_headers(&parts.headers))
     }
 }
 
@@ -92,6 +20,8 @@ where
 mod tests {
     extern crate axum;
     use axum::{body::Body, http::Request};
+
+    use crate::LayerMode;
 
     use super::*;
 
