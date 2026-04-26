@@ -452,7 +452,7 @@ impl Unpoly {
         Ok(headers)
     }
 
-    fn from_headers(header_map: &HeaderMap) -> Self {
+    pub fn from_headers(header_map: &HeaderMap) -> Self {
         let request_version = header_map
             .get(headers::VERSION)
             .map(|v| v.to_str().map_or(None, |v| Some(v.to_string())))
