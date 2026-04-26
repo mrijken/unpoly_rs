@@ -1,3 +1,8 @@
+## [0.2.4] - 2026-04-26
+
+### 🐛 Bug Fixes
+
+- Make from_headers public
 ## [0.2.2] - 2026-04-26
 
 ### ⚙️ Miscellaneous Tasks
